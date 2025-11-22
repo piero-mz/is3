@@ -10,15 +10,31 @@ public class Servicio3Test {
     //Pruebas Unitarias para funcionalidad secundaria 1
     @Test
     void verificarLimiteValidoTest() {
-        double totalValido = 5000.00; 
-        assertTrue(Servicio3.verificarLimite(totalValido));
+        int totalCantidad = 0;
+        assertTrue(Servicio3.verificarCantidad(totalCantidad));
     }
     
     @Test
-    void verificarLimiteExcedidoTest() {
-        double totalExcedido = 5000.01; 
-        assertFalse(Servicio3.verificarLimite(totalExcedido));
-    } 
+    void verificarSKUDuplicadoTest() {
+        Producto producto1 = new Producto("Laptop",10.00,1,"111","Tecno",true,true);
+        String sku1=producto1.getSku();
+        Producto producto2 = new Producto("Laptop2",12.00,1,"111","Tecno",true,true);
+        String sku2=producto2.getSku();
+        assertFalse(Servicio3.validarSKU(sku1,sku2));
+    }
+
+    @Test
+    void verificarAgregadoCorrectoTest() {
+        Producto producto = new Producto("Laptop",10.00,1,"111","Tecno",true,true);
+        int cantidad =producto.getCantidad();
+        assertTrue(Servicio3.agregarProducto(producto));
+    }
+
+    @Test
+    void verificarAtributosTest() {
+        Producto producto = new Producto("Laptop",10.00,1,"111","Tecno",true,true);
+        assertTrue(Servicio3.respetoAtributos(producto));
+    }
 
     //Pruebas unitarias para funcionalidad secundaria 2
     @Test
